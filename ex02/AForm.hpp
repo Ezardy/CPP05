@@ -19,11 +19,16 @@ public:
 		virtual const char	*what(void) const throw();
 	};
 
+	class UnsignedFormExecution : public std::exception {
+	public:
+		virtual const char	*what(void) const throw();
+	};
+
 	virtual ~AForm(void) throw();
 
 	AForm	&operator=(const AForm &other) throw();
 
-	virtual void	execute(const Bureaucrat &executor) const throw (GradeTooLowException) = 0;
+	virtual void	execute(const Bureaucrat &executor) const throw (GradeTooLowException, UnsignedFormExecution) = 0;
 
 	const std::string	&getName(void) const throw();
 	bool				getSigned(void) const throw();
@@ -36,7 +41,7 @@ protected:
 	AForm(const std::string &name, unsigned short signGrade, unsigned short executeGrade) throw(GradeTooHighException, GradeTooLowException);
 	AForm(const AForm &form) throw();
 
-	void	check(unsigned short grade) const throw(GradeTooLowException);
+	void	check(unsigned short grade) const throw(GradeTooLowException, UnsignedFormExecution);
 private:
 	const std::string		_name;
 	bool					_signed;

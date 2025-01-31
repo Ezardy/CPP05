@@ -9,6 +9,10 @@ const char	*AForm::GradeTooLowException::what(void) const throw() {
 	return "The grade is too low for the form";
 }
 
+const char	*AForm::UnsignedFormExecution::what(void) const throw() {
+	return "An unsigned form can't be executed";
+}
+
 AForm::AForm(void)
 throw()
 : _name("Unnamed"), _signed(false), _signGrade(Bureaucrat::minGrade),
@@ -64,8 +68,10 @@ void	AForm::beSigned(const Bureaucrat &bureaucrat) throw(GradeTooLowException) {
 		throw GradeTooLowException();
 }
 
-void	AForm::check(unsigned short grade) const throw(GradeTooLowException) {
-	if (grade > _executeGrade)
+void	AForm::check(unsigned short grade) const throw(GradeTooLowException, UnsignedFormExecution) {
+	if (!_signed)
+		throw UnsignedFormExecution();
+	else if (grade > _executeGrade)
 		throw GradeTooLowException();
 }
 

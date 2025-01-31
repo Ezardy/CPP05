@@ -69,6 +69,15 @@ void	Bureaucrat::signForm(AForm &form) const throw() {
 	}
 }
 
+void	Bureaucrat::executeForm(const AForm &form) const throw() {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << '\n';
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << '\n';
+	}
+}
+
 const unsigned short	Bureaucrat::minGrade = 150;
 const unsigned short	Bureaucrat::maxGrade = 1;
 

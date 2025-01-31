@@ -31,6 +31,7 @@ public:
 	void	inc(void) throw(GradeTooHighException);
 	void	dec(void) throw(GradeTooLowException);
 	void	signForm(AForm &form) const throw();
+	void	executeForm(const AForm &form) const throw();
 
 	static const unsigned short	minGrade;
 	static const unsigned short	maxGrade;

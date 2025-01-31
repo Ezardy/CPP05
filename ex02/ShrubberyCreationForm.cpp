@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
@@ -25,7 +26,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) throw() {
 
 }
 
-ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
+ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
+throw() {
 	if (this != &other)
 		_target = other._target;
 	return *this;
@@ -33,5 +35,23 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const throw(AForm::GradeTooLowException) {
 	check(executor.getGrade());
-
+	std::ofstream	file(_target + "_shrubbery");
+	if (file) {
+		file <<
+			"                                  # #### ####"
+			"                                ### \\/#|### |/####"
+			"                               ##\\/#/ \\||/##/_/##/_#"
+			"                             ###  \\/###|/ \\/ # ###"
+			"                           ##_\\_#\\_\\## | #/###_/_####"
+			"                          ## #### # \\ #| /  #### ##/##"
+			"                           __#_--###`  |{,###---###-~"
+			"                                     \\ }{"
+			"                                      }}{"
+			"                                      }}{"
+			"                                 ejm  {{}"
+			"                                , -=-~{ .-^- _"
+			"                                      `}"
+			"                                       {";
+	} else
+		std::cerr << "Inappropriate soil for a shrubber\n";
 }
