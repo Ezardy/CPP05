@@ -18,7 +18,7 @@ throw(AForm::GradeTooHighException, AForm::GradeTooLowException)
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
 throw()
-: AForm("Robotomy Request", 72, 45), _target(other._target) {
+: AForm(other), _target(other._target) {
 
 }
 
@@ -28,17 +28,23 @@ RobotomyRequestForm::~RobotomyRequestForm(void) throw() {
 
 RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 throw() {
-	if (this != &other)
+	if (this != &other) {
 		_target = other._target;
+		this->AForm::operator=(other);
+	}
 	return *this;
 }
 
 void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
-throw(AForm::GradeTooLowException) {
+throw(AForm::GradeTooLowException, AForm::UnsignedFormExecution) {
 	check(executor.getGrade());
 	std::cout << "VVZZZSSS-VVZZZSSS-VVZZZSSS-WWWRRRRM\n";
-	if (rand() % 100 > 49)
+	if (rand() % 2 > 0)
 		std::cout << _target << " has been robotomized\n";
 	else
 		std::cout << "Robotomy was failed\n";
+}
+
+const std::string	&RobotomyRequestForm::getTarget(void) const throw() {
+	return _target;
 }

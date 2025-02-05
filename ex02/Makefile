@@ -1,6 +1,6 @@
 all: test
 
-src=Bureaucrat Form ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm main
+src=Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm main
 obj=$(addsuffix .o, $(src))
 
 test: $(obj)

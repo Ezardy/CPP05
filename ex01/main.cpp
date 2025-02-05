@@ -57,8 +57,8 @@ TEST_START(bureaucrat_signForm)
 		matt.signForm(form);
 		TEST_ASSERT(form.getSigned() == true)
 
-		expected = "Matt couldn't sign Form because 'The grade is too low for the form'\n"
-			"Matt signed Form\n";
+		cerrExpected = "Matt couldn't sign Form because 'The grade is too low for the form'\n";
+		expected = "Matt signed Form\n";
 	TEST_LOGIC_END
 	TEST_EMERGENCY_START
 	TEST_EMERGENCY_END

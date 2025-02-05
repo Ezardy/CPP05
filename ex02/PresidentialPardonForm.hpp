@@ -12,7 +12,9 @@ public:
 
 	PresidentialPardonForm	&operator=(const PresidentialPardonForm &other) throw();
 
-	void	execute(const Bureaucrat &executor) const throw(AForm::GradeTooLowException);
+	const std::string	&getTarget(void) const throw();
+
+	void	execute(const Bureaucrat &executor) const throw(AForm::GradeTooLowException, AForm::UnsignedFormExecution);
 private:
 	std::string	_target;
 };

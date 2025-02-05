@@ -28,7 +28,7 @@ public:
 
 	AForm	&operator=(const AForm &other) throw();
 
-	virtual void	execute(const Bureaucrat &executor) const throw (GradeTooLowException, UnsignedFormExecution) = 0;
+	virtual void	execute(const Bureaucrat &executor) const = 0;
 
 	const std::string	&getName(void) const throw();
 	bool				getSigned(void) const throw();
