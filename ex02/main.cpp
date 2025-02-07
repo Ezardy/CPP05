@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <cmath>
 #include <iostream>
 #include <fstream>
 
@@ -273,7 +274,7 @@ TEST_START(RobotomyRequestForm_execute)
 		expected = "An unsigned form can't be executed\n"
 			"Matt signed Robotomy Request\n"
 			"The grade is too low for the form\n";
-		
+
 		const float		tolerance = 5.0f;
 		const int		eventCount = 100;
 		int				successCount = 0;
